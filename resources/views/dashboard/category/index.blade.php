@@ -1,7 +1,7 @@
 @extends('dashboard.master')
 
 @section('content')
-    <a class="btn btn-success mt-3 mb-3" href="{{ route('posts.create') }}">
+    <a class="btn btn-success mt-3 mb-3" href="{{ route('category.create') }}">
         crear
     </a>
 
@@ -14,9 +14,7 @@
             <td>
                 Titulo
             </td>
-            <td>
-                Posteado
-            </td>
+
             <td>
                 Creacion
             </td>
@@ -31,32 +29,30 @@
         <tbody>
             </thead>
         <tbody>
-            @foreach ($posts as $post)
+            @foreach($categories as $category)
                 <thead>
                     <tr>
                         <td>
-                            {{ $post->id }}
+                            {{ $category->id }}
                         </td>
                         <td>
-                            {{ $post->title }}
+                            {{ $category->title }}
+                        </td>
+
+                        <td>
+                            {{ $category->created_at->format('d-m-Y') }}
                         </td>
                         <td>
-                            {{ $post->posted }}
+                            {{ $category->updated_at->format('d-m-Y') }}
                         </td>
                         <td>
-                            {{ $post->created_at->format('d-m-Y') }}
-                        </td>
-                        <td>
-                            {{ $post->updated_at->format('d-m-Y') }}
-                        </td>
-                        <td>
-                            <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
-                            <a class="btn btn-success mt-3 mb-3" href="{{ route('posts.show', $post->id) }}"> VER </a>
-                            <a class="btn btn-success mt-3 mb-3" href="{{ route('posts.edit', $post->id) }}"> Actualizar </a>
+                            <form method="POST" action="{{ route('category.destroy', $category->id) }}">
+                            <a class="btn btn-success mt-3 mb-3" href="{{ route('category.show', $category->id) }}"> VER </a>
+                            <a class="btn btn-success mt-3 mb-3" href="{{ route('category.edit', $category->id) }}"> Actualizar </a>
                                 @method('DELETE')
                                  @csrf
                             <button type="submit" data-toggle="modal" data-target="#deleteModal"
-                                data-id="{{ $post->id }}" class="btn btn-danger"  onclick="return confirm('estas seguro de borrarlo')">Eliminar</button>
+                                data-id="{{ $category->id }}" class="btn btn-danger"  onclick="return confirm('estas seguro de borrarlo')">Eliminar</button>
                                </form>
 
                         </td>
@@ -68,7 +64,7 @@
     </table>
 
 
-    {{ $posts->links() }}
+    {{ $categories->links() }}
 
 
 @endsection

@@ -20,6 +20,7 @@
                     <div class="dropdown-menu">
 
                       <a class="dropdown-item" href="{{route('posts.index')}}">Post</a>
+                      <a class="dropdown-item" href="{{route('category.index')}}">Categorias</a>
 
                       <div class="dropdown-divider"></div>
                     </div>

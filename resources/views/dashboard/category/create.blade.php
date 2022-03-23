@@ -9,8 +9,8 @@
 @include('dashboard.partials.validation-error')
 
 
-<form action="{{route("posts.store",$post->id)}}" method="POST">
-@include('dashboard.post._form')
+<form action="{{route("category.store",$category->id)}}" method="POST">
+@include('dashboard.category._form')
 </form>
 
 </div>

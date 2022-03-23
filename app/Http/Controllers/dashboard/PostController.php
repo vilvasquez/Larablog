@@ -6,6 +6,7 @@ use  \Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
 use App\Models\Category;
+use App\Models\PostImage;
 
 class PostController extends Controller
 {
@@ -16,9 +17,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('created_at','desc')->paginate(5);
+        $posts = Post::orderBy('created_at','desc')->paginate(5);
 
-        return view('dashboard.category.index',['categories' => $categories]);
+        return view('dashboard.post.index',['posts' => $posts]);
     }
 
     /**
@@ -82,7 +83,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard.post.edit',["post" => $post]);
+        $categories = Category::pluck('id','title');
+
+
+        return view('dashboard.post.edit',['post' => $post,'categories' => $categories]);
     }
 
     /**
@@ -101,6 +105,20 @@ class PostController extends Controller
 
     }
 
+    public function image( Request $request, Post $post)
+    {
+        $request->validate([
+            'image'=> 'required|mimes:png,jpg|max:10230'  //10mb
+        ]);
+
+     $filename = time() . ".". $request->image->extension();
+
+     $request->image->move(public_path('images'));
+
+    PostImage::create(['image'=> $filename, 'post_id'=>$post->id]);
+    return back()->with('status','Humano, tu Imagen se ha actualizado Con Exito');
+
+    }
 
     /**
      * Remove the specified resource from storage.

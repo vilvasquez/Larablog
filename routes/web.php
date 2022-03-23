@@ -3,7 +3,7 @@
 use App\Http\Controllers\dashboardController\PostController as DashboardControllerPostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\dashboard\CatergoryController;
+use App\Http\Controllers\dashboard\CategoryController;
 
 
 /*
@@ -23,7 +23,8 @@ Route::get('/', function () {
 
 
 Route::resource('dashboard/posts', 'dashboard\PostController');
-
+Route::resource('dashboard/category', 'dashboard\CategoryController');
+Route::post('dashboard/posts/{post}/image','dashboard\PostController@image')->name('post.image');
 
 
 /*

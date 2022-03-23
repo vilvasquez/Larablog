@@ -27,6 +27,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^33.0.0",
         "browsersync": "^0.0.1-security",
         "jquery": "^3.6.0",
         "mix": "^0.0.1",

@@ -2,33 +2,16 @@
 
 @section('content')
 
-
-
 <div class="container">
-
-
-
-    @csrf
 
     <div class="form-group">
      <label for="title">Titulo</label>
-     <input readonly  class="form-control" type="text" name="title" id="title" value="{{ $post->title }}">
-
-      @error('title')
-          <small class="text-danger">{{$message}}</small>
-      @enderror
-
-    </div>
-    <div class="form-group">
-        <label for="url_clean">URL limpia</label>
-        <input readonly class="form-control" type="text" name="url_clean" id="url_clean" value="{{ $post->url_clean }}">
+     <input readonly  class="form-control" type="text" name="title" id="title" value="{{ $category->title }}">
        </div>
 
-    <div class="form-group">
-     <label for="content">Contenido</label>
-     <textarea readonly class="form-control" id="content" name="content" rows="3">{{ $post->content }}</textarea>
-    </div>
-
-
+        <div class="form-group">
+        <label for="url_clean">URL limpia</label>
+        <input readonly class="form-control" type="text" name="url_clean" id="url_clean" value="{{ $category->url_clean }}">
+       </div>
 </div>
 @endsection
